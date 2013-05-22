@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">eresto</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="image_desc">Images</string>
+    <string name="menu_settings">Images</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="title_activity_main">eresto finder</string>
+    <string name="search_desc">Search Button</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="image_horizontal">Image Horizontal</string>
+    <string name="title_activity_restaurant">RestaurantActivity</string>
+    <string name="title_activity_restaurant_fragment">RestaurantFragment</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_menu_fragment">MenuFragment</string>
+
+    <!-- overview fragment part -->
+    <string name="loading_map">Loading map..</string>
+    <string name="telephone_label">telephone</string>
+    <string name="address_label">address</string>
+    <string name="website_label">website</string>
+    <string name="price_label">price range</string>
+    <string name="working_label">working hours</string>
+    <string name="category_label">food categories</string>
+
+    <!-- dummy fragment data -->
+    <string name="telephone_data">022&#8211;000239</string>
+    <string name="address_data">Jl. Sersan Bajuri Km 4,7 No. 88, Cihideung, Bandung, Indonesia</string>
+    <string name="website_data">http://www.kampungdaun.com</string>
+    <string name="price_data">Rp 15.000 ~ Rp 50.000</string>
+    <string name="working_data">saturday &amp; sunday: 9am - 10pm \nmonday till friday: 9am - 11pm</string>
+    <string name="category_data">Indonesian, Sundanese</string>
+
+    <!-- menu fragment part -->
+    <string name="main_dishes">Main Dishes</string>
+    <string name="search_hint">Search restaurant..</string>
+    <string name="price">Rp 15.000</string>
+
+    <!-- dashboard part -->
+    <string name="feature">Feature Places Bandung</string>
+    <string name="top">Top Places Bandung</string>
+    <string name="top2">Top Places Indonesia</string>
+    <string name="resto">resto</string>
+    <string name="title_activity_restaurant_list">RestaurantListActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_preview">PreviewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+</resources>

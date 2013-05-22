@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/header_bg"
+        android:gravity="center_vertical"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_horizontal"
+            android:layout_marginLeft="-5dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="-8dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="@string/resto"
+            android:textColor="#fff"
+            android:textSize="20sp" 
+            android:gravity="center"/>
+
+    </RelativeLayout>
+    
+    <!-- tab section -->
+    <TabHost 
+	    android:id="@android:id/tabhost"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/header"	    
+	    android:layout_height="fill_parent" >
+	
+	    <LinearLayout
+	        android:id="@+id/tabcontainer"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:orientation="vertical" >
+	
+	        <TabWidget
+	            android:id="@android:id/tabs"
+	            android:layout_width="fill_parent"
+	            android:layout_height="43dp"
+	            android:background="#000"
+	            android:gravity="center_horizontal" >
+	        </TabWidget>
+	
+	        <FrameLayout
+	            android:id="@android:id/tabcontent"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:fadeScrollbars="false"
+	            android:fadingEdge="none"
+	            android:scrollbars="@null" >
+	        </FrameLayout>
+	    </LinearLayout>
+	
+	</TabHost>
+    
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_below="@id/header" >
+        
+    </LinearLayout>
+
+</RelativeLayout>

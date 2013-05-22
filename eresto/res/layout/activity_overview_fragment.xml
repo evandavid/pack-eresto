@@ -1,0 +1,263 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scroll_overview"
+    android:background="@drawable/repeated_bg" >
+
+    <LinearLayout
+         android:id="@+id/yourViewId"
+         android:layout_width="fill_parent"
+	     android:layout_height="wrap_content"
+	     android:orientation="vertical"
+	     android:background="#00000000">
+	
+	    <!-- Overview menu -->
+	    <LinearLayout
+	        	android:layout_width="fill_parent"
+	        	android:paddingTop="5dp"
+	        	android:paddingBottom="5dp"
+	        	android:paddingLeft="10dp"
+	        	android:paddingRight="10dp"
+	     	android:layout_height="wrap_content"
+	     	android:orientation="vertical">
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/telephone"
+	     	   		android:id="@+id/telephone_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/telephone_logo"
+	     	       	android:id="@+id/telephone_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/telephone_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/telephone_logo"
+	     	        android:layout_below="@+id/telephone_label"
+	     	       	android:id="@+id/telephone"
+	     	       	android:text="@string/telephone_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	
+	        <!-- Separator -->
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="7dp"
+	     	   android:layout_marginBottom="5dp"
+	     	   android:layout_marginTop="5dp"
+	     	   android:background="@drawable/separator">
+	        </LinearLayout>
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/location"
+	     	   		android:id="@+id/address_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/address_logo"
+	     	       	android:id="@+id/address_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/address_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/address_logo"
+	     	        android:layout_below="@+id/address_label"
+	     	       	android:id="@+id/address"
+	     	       	android:text="@string/address_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	
+	        <!-- Separator -->
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="7dp"
+	     	   android:layout_marginBottom="5dp"
+	     	   android:layout_marginTop="5dp"
+	     	   android:background="@drawable/separator">
+	        </LinearLayout>
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/website"
+	     	   		android:id="@+id/website_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/website_logo"
+	     	       	android:id="@+id/website_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/website_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/website_logo"
+	     	        android:layout_below="@+id/website_label"
+	     	       	android:id="@+id/website"
+	     	       	android:text="@string/website_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	
+	        <!-- Separator -->
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="7dp"
+	     	   android:layout_marginBottom="5dp"
+	     	   android:layout_marginTop="5dp"
+	     	   android:background="@drawable/separator">
+	        </LinearLayout>
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/location"
+	     	   		android:id="@+id/price_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/price_logo"
+	     	       	android:id="@+id/price_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/price_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/price_logo"
+	     	        android:layout_below="@+id/price_label"
+	     	       	android:id="@+id/price"
+	     	       	android:text="@string/price_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	
+	        <!-- Separator -->
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="7dp"
+	     	   android:layout_marginBottom="5dp"
+	     	   android:layout_marginTop="5dp"
+	     	   android:background="@drawable/separator">
+	        </LinearLayout>
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/data"
+	     	   		android:id="@+id/working_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/working_logo"
+	     	       	android:id="@+id/working_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/working_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/working_logo"
+	     	        android:layout_below="@+id/working_label"
+	     	       	android:id="@+id/working"
+	     	       	android:text="@string/working_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	        <!-- Separator -->
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="7dp"
+	     	   android:layout_marginBottom="5dp"
+	     	   android:layout_marginTop="5dp"
+	     	   android:background="@drawable/separator">
+	        </LinearLayout>
+	
+	        <RelativeLayout
+	            android:layout_width="fill_parent"
+	     	   android:layout_height="wrap_content">
+	
+	     	   <ImageView
+	     	       	android:contentDescription="@string/image_desc"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"
+	     	   		android:layout_alignParentLeft="true"
+	     	   		android:layout_marginRight="5dp"
+	     	   		android:src="@drawable/collection"
+	     	   		android:id="@+id/category_logo"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/category_logo"
+	     	       	android:id="@+id/category_label"
+	     	       	android:textColor="@color/yellow"
+	     	       	android:textSize="13dp"
+	     	       	android:text="@string/category_label"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	     	   <TextView
+	     	        android:layout_toRightOf="@+id/category_logo"
+	     	        android:layout_below="@+id/category_label"
+	     	       	android:id="@+id/category"
+	     	       	android:text="@string/category_data"
+	     	       	android:textColor="#FFF"
+	     	       	android:textSize="13dp"
+	     	       	android:layout_width="wrap_content"
+	     	   		android:layout_height="wrap_content"/>
+	
+	        </RelativeLayout>
+	    </LinearLayout>
+	 </LinearLayout>
+
+</ScrollView>

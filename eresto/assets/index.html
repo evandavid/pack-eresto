@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=AIzaSyCKAib4-oQI4hVloaewe4AzlNWoYIrC_PA"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript">
+    google.load("maps","2", {"other_params":"sensor=false"});
+    function init(lat,lang) {
+      map = new google.maps.Map2(document.getElementById("map"));
+      var myLatLng = new google.maps.LatLng(lat,lang);
+      var myMarker = new google.maps.Marker(myLatLng, {"draggable":"true","title":"A place on earth"});
+      map.setCenter(myLatLng,17);
+      map.addControl(new google.maps.LargeMapControl());
+      map.addControl(new google.maps.MapTypeControl());
+      map.setMapType(G_NORMAL_MAP);
+      map.addOverlay(myMarker);
+    };
+    // $(document).ready(function(){
+      function first(data){
+        // var lat = data.split(",")[0];
+        // var lang = data.split(",")[1];
+        // google.setOnLoadCallback(init);
+        // init(lat,lang);
+        // console.log("fd");
+        $("#map").html(data);
+      };
+    // });
+  </script>
+  <title>My first Google Map</title>
+</head>
+<body onunload="google.maps.Unload()">
+  <div id="map" style="width: 800px; height: 800px; margin: auto; background-color: white">
+  </div>
+  <button onclick="first('54.124634,-3.237029')">sss</button>
+  <script type="text/javascript">
+    function getViewport() {
+
+     var viewPortWidth;
+     var viewPortHeight;
+
+     // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+     if (typeof window.innerWidth != 'undefined') {
+       viewPortWidth = window.innerWidth,
+       viewPortHeight = window.innerHeight
+     }
+
+    // IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+     else if (typeof document.documentElement != 'undefined'
+     && typeof document.documentElement.clientWidth !=
+     'undefined' && document.documentElement.clientWidth != 0) {
+        viewPortWidth = document.documentElement.clientWidth,
+        viewPortHeight = document.documentElement.clientHeight
+     }
+
+     // older versions of IE
+     else {
+       viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+       viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+     }
+     return [viewPortWidth, viewPortHeight];
+    }
+    $(document).ready(function(){
+      var x = getViewport();
+      $("#map").css('width', x[0]);
+      $("#map").css('height', x[1]);
+    });
+  </script>
+</body>
+</html>
