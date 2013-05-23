@@ -15,13 +15,15 @@ public class MenuAdapter extends BaseAdapter {
 	private Context context;
 	private final String[][] data;
 	public ImageLoader imageLoader; 
+	
  
 	public MenuAdapter(Context context, String[][] mobileValues) {
 		this.context = context;
 		this.data = mobileValues;
 		imageLoader=new ImageLoader(context.getApplicationContext());
 	}
- 
+	
+	
 	public View getView(int position, View convertView, ViewGroup parent) {
  
 		LayoutInflater inflater = (LayoutInflater) context

@@ -22,7 +22,7 @@
 	    	android:layout_height="70dp"
 	    	android:contentDescription="@string/image_horizontal"
 	    	android:background="@drawable/logo2"
-	    	android:scaleType="center"/>
+	    	android:scaleType="fitXY"/>
 	</LinearLayout>
        
     <TextView 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content" 
         android:textColor="#FFF"
         android:paddingLeft="5dp"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:layout_marginTop="3dp"
         android:text="Jl. Taman Sari No. 92,Cibeunying, Bandung 40116,Jawa Barat, Indonesia"
         android:layout_toRightOf="@+id/imageb"

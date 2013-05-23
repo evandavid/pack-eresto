@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.R;
+import android.R.color;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -39,9 +40,10 @@ public class ImageLoader {
     {
         imageViews.put(imageView, url);
         Bitmap bitmap=memoryCache.get(url);
-        if(bitmap!=null)
+        if(bitmap!=null){
             imageView.setImageBitmap(bitmap);
-        else
+        	imageView.setBackgroundColor(color.white);
+        }else
         {
             queuePhoto(url, imageView);
             imageView.setImageResource(stub_id);
@@ -186,9 +188,10 @@ public class ImageLoader {
         {
             if(imageViewReused(photoToLoad))
                 return;
-            if(bitmap!=null)
+            if(bitmap!=null){
                 photoToLoad.imageView.setImageBitmap(bitmap);
-            else
+            	photoToLoad.imageView.setBackgroundColor(color.white);
+            }else
                 photoToLoad.imageView.setImageResource(stub_id);
         }
     }
