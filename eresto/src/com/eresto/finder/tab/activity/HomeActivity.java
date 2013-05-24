@@ -45,7 +45,7 @@ public class HomeActivity extends Activity {
         top_global.setAdapter(adapter);
         
         //search
-        search_field = (EditText)findViewById(R.id.search_input);
+//        search_field = (EditText)findViewById(R.id.search_input);
     }  
     
     class YScrollDetector extends SimpleOnGestureListener {

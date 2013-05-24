@@ -61,8 +61,8 @@ public class CurrentCityDb extends SQLiteOpenHelper{
         db.update("datas", value, where, whereArgs);
 	}
 	
-	public Cursor getAllResto(SQLiteDatabase db){
-		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" LIMIT 10", null);
+	public Cursor getAllResto(SQLiteDatabase db, String limit){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" order by cast(id_resto as int) ASC LIMIT 10 OFFSET "+limit, null);
 		return mCount;
 	}
 	

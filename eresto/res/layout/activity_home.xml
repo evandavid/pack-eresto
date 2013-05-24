@@ -3,140 +3,98 @@
     android:layout_width="match_parent" 
     android:layout_height="match_parent"
     android:background="@drawable/repeated_bg" >
-    
-	<ScrollView  
-	    android:orientation="vertical" 
-	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent" 
-	    android:background="#00000000"
-	    android:id="@+id/ScrollView01"
-	    android:layout_above="@+id/search_box">
 	    
 	    <LinearLayout
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="match_parent"
 	        android:orientation="vertical" >
-	    
-		    <LinearLayout 
-		        android:layout_width="fill_parent" 
-		    	android:layout_height="wrap_content"
-		    	android:background="#12100b"
-		    	android:layout_marginTop="5dp"
-		    	android:layout_marginBottom="2dp"
-		    	android:orientation="vertical">
-		    	
-		        <TextView
-		            android:id="@+id/feature_label"
-		            android:layout_width="fill_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginBottom="3dp"
-		            android:layout_marginLeft="15dp"
-		            android:layout_marginTop="5dp"
-		            android:text="@string/feature"
-		            android:textColor="#FFF"
-		            android:textSize="12dp" />
-		    	
-		        <com.devsmart.android.ui.HorizontalListView
-		            android:id="@+id/feature_list"
-		            android:layout_width="wrap_content"
-		            android:layout_height="125dp"
-		            android:background="#ddd" 
-		            android:layout_marginBottom="5dp">
-			    
-				</com.devsmart.android.ui.HorizontalListView>
-		        
-		    </LinearLayout>
-		    
-		    <LinearLayout 
-		        android:layout_width="fill_parent" 
-		    	android:layout_height="wrap_content"
-		    	android:background="#12100b"
-		    	android:layout_marginTop="2dp"
-		    	android:layout_marginBottom="2dp"
-		    	android:orientation="vertical">
-		    	
-		        <TextView
-		            android:id="@+id/top_label"
-		            android:layout_width="fill_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginBottom="3dp"
-		            android:layout_marginLeft="15dp"
-		            android:layout_marginTop="5dp"
-		            android:text="@string/top"
-		            android:textColor="#FFF"
-		            android:textSize="12dp" />
-		    	
-		        <com.devsmart.android.ui.HorizontalListView
-		            android:id="@+id/top_list"
-		            android:layout_width="wrap_content"
-		            android:layout_height="125dp"
-		            android:background="#ddd" 
-		            android:layout_marginBottom="5dp">
-			    
-				</com.devsmart.android.ui.HorizontalListView>
-		    </LinearLayout>
-		    
-		    <LinearLayout 
-		        android:layout_width="fill_parent" 
-		    	android:layout_height="wrap_content"
-		    	android:background="#12100b"
-		    	android:layout_marginTop="2dp"
-		    	android:layout_marginBottom="2dp"
-		    	android:orientation="vertical">
-		    	
-		        <TextView
-		            android:id="@+id/top_global_label"
-		            android:layout_width="fill_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginBottom="3dp"
-		            android:layout_marginLeft="15dp"
-		            android:layout_marginTop="5dp"
-		            android:text="@string/top2"
-		            android:textColor="#FFF"
-		            android:textSize="12dp" />
-		    	
-		        <com.devsmart.android.ui.HorizontalListView
-		            android:id="@+id/top_global_list"
-		            android:layout_width="wrap_content"
-		            android:layout_height="125dp"
-		            android:background="#ddd" 
-		            android:layout_marginBottom="5dp">
-			    
-				</com.devsmart.android.ui.HorizontalListView>
-		        
-		    </LinearLayout>
-		</LinearLayout>
-	</ScrollView>  
-	
-	<LinearLayout
-	    android:id="@+id/search_box"
-	    android:layout_width="fill_parent" 
-	    android:layout_height="60dp" 
-	    android:background="#FFF"
-	    android:layout_alignParentBottom="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-	    
-	    <EditText
-	        android:id="@+id/search_input"
-	        style="@style/red_edittext"
-	        android:layout_width="0dp"
-	        android:hint=""
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginRight="2dp"
-	        android:layout_weight="1"/>
-	    
-	    <ImageButton
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_vertical"
-	        android:layout_marginRight="10dp"
-	        android:background="#00000000"
-	        android:padding="5dp"
-	        android:src="@drawable/action_search"
-			android:contentDescription="@string/image_horizontal"/>
-	    
-	</LinearLayout>
+
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="0dp"
+	            android:layout_marginBottom="2dp"
+	            android:layout_marginTop="5dp"
+	            android:layout_weight="1"
+	            android:background="#12100b"
+	            android:orientation="vertical" >
+
+	            <TextView
+	                android:id="@+id/feature_label"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="3dp"
+	                android:layout_marginLeft="15dp"
+	                android:layout_marginTop="5dp"
+	                android:text="@string/feature"
+	                android:textColor="#FFF"
+	                android:textSize="12dp" />
+
+	            <com.devsmart.android.ui.HorizontalListView
+	                android:id="@+id/feature_list"
+	                android:layout_width="wrap_content"
+	                android:layout_height="fill_parent"
+	                android:layout_marginBottom="5dp"
+	                android:background="#ddd" >
+	            </com.devsmart.android.ui.HorizontalListView>
+	        </LinearLayout>
+
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="0dp"
+	            android:layout_marginBottom="2dp"
+	            android:layout_marginTop="2dp"
+	            android:layout_weight="1"
+	            android:background="#12100b"
+	            android:orientation="vertical" >
+
+	            <TextView
+	                android:id="@+id/top_label"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="3dp"
+	                android:layout_marginLeft="15dp"
+	                android:layout_marginTop="5dp"
+	                android:text="@string/top"
+	                android:textColor="#FFF"
+	                android:textSize="12dp" />
+
+	            <com.devsmart.android.ui.HorizontalListView
+	                android:id="@+id/top_list"
+	                android:layout_width="wrap_content"
+	                android:layout_height="fill_parent"
+	                android:layout_marginBottom="5dp"
+	                android:background="#ddd" >
+	            </com.devsmart.android.ui.HorizontalListView>
+	        </LinearLayout>
+
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="0dp"
+	            android:layout_marginBottom="2dp"
+	            android:layout_marginTop="2dp"
+	            android:layout_weight="1"
+	            android:background="#12100b"
+	            android:orientation="vertical" >
+
+	            <TextView
+	                android:id="@+id/top_global_label"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="3dp"
+	                android:layout_marginLeft="15dp"
+	                android:layout_marginTop="5dp"
+	                android:text="@string/top2"
+	                android:textColor="#FFF"
+	                android:textSize="12dp" />
+
+	            <com.devsmart.android.ui.HorizontalListView
+	                android:id="@+id/top_global_list"
+	                android:layout_width="wrap_content"
+	                android:layout_height="fill_parent"
+	                android:layout_marginBottom="5dp"
+	                android:background="#ddd" >
+	            </com.devsmart.android.ui.HorizontalListView>
+	        </LinearLayout>
+	    </LinearLayout>
+
 </RelativeLayout>

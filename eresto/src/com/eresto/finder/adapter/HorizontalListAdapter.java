@@ -2,6 +2,7 @@ package com.eresto.finder.adapter;
 
 import com.eresto.finder.R;
 import com.eresto.finder.RestaurantActivity;
+import com.eresto.finder.util.SquareImageView;
 import com.eresto.utils.*;
 
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,7 +49,9 @@ public class HorizontalListAdapter extends BaseAdapter {
 	            vi = inflater.inflate(R.layout.item_horizontal_image, null);
 	    if(data[position][1] != null){
 	        TextView text=(TextView)vi.findViewById(R.id.text);
-	        ImageView image=(ImageView)vi.findViewById(R.id.image);
+	        SquareImageView image=(SquareImageView)vi.findViewById(R.id.image);
+	        text.getLayoutParams().width=image.viewWidth;
+//	        text.setLayoutParams(new LayoutParams(image.getWidth(), 30));
 	        
         	text.setText(data[position][1]);
         	imageLoader.DisplayImage(data[position][0], image);

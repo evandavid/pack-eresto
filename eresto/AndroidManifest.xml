@@ -79,6 +79,7 @@
             android:label="@string/title_activity_preview"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <uses-library android:name="com.google.android.maps" />
     </application>
 
 </manifest>

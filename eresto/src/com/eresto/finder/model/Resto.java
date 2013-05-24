@@ -37,10 +37,10 @@ public class Resto {
 	 
 	 public Resto(){}
 	 
-	 public Resto[] getAllResto(){
+	 public Resto[] getAllResto(String limit){
 		 dbhelper = new CurrentCityDb(this.context);
 	     db = dbhelper.getWritableDatabase();
-	     Cursor cursor = dbhelper.getAllResto(db);
+	     Cursor cursor = dbhelper.getAllResto(db, limit);
 	     Resto[] resto = construtResto(cursor);
 	     return resto;
 	 }
