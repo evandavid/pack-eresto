@@ -3,12 +3,16 @@ package com.eresto.finder.tab.activity;
 import com.eresto.finder.R;
 import com.eresto.finder.adapter.HomeAdapter;
 import com.eresto.finder.model.Resto;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-import eu.erikw.PullToRefreshListView;
-import eu.erikw.PullToRefreshListView.OnRefreshListener;
+
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.app.Activity; 
 
 public class RestaurantListActivity extends Activity {
@@ -18,6 +22,7 @@ public class RestaurantListActivity extends Activity {
 	public Resto[] resto;
 	public String offset = "10";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,11 +33,14 @@ public class RestaurantListActivity extends Activity {
 		this._adapter = new HomeAdapter(this, this.resto);
 		this._list = (PullToRefreshListView)findViewById(R.id.listView1);
 		this._list.setAdapter(this._adapter);
+		this._list.setMode(Mode.PULL_FROM_END);    // mode refresh for top and bottom
+		this._list.setPullLabel("Loading");
+		this._list.setShowIndicator(true);
 		
-		this._list.setOnRefreshListener(new OnRefreshListener() {
+		this._list.setOnRefreshListener(new OnRefreshListener<ListView>() {
 
 			@Override
-			public void onRefresh() {
+			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
 				new GetDataTask().execute();
 			}
 		});
@@ -48,8 +56,8 @@ public class RestaurantListActivity extends Activity {
 			returnresto[i] = first[i];
 		}
 		
-		for(int j=0;j<first.length;j++){
-			returnresto[i] = first[j];
+		for(int j=0;j<second.length;j++){
+			returnresto[i] = second[j];
 			i++;
 		}
 
@@ -80,10 +88,12 @@ public class RestaurantListActivity extends Activity {
         			Resto[] old = resto;
         			offset = String.valueOf(Integer.parseInt(offset)+10);
         			Resto[] rnew = tmp.getAllResto(offset);
-    		        resto = combineResto(rnew, old);
+    		        resto = combineResto(old,rnew);
+    		        int position = _list.getFirstVisible();
     		        _adapter = new HomeAdapter(RestaurantListActivity.this, resto);
     				_list = (PullToRefreshListView)findViewById(R.id.listView1);
     				_list.setAdapter(_adapter);
+    				_list.setSelection(position);
         		    }
         		});
 

@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:orientation="vertical" 
     android:layout_width="match_parent" 
-    android:layout_height="135dp" 
+    android:layout_height="wrap_content" 
     android:background="#00000000"
     android:padding="2dp">
     
@@ -12,7 +12,7 @@
         android:padding="2dp"
         android:contentDescription="@string/image_horizontal">
     
-	    <ImageView 
+	    <com.eresto.finder.util.SquareImageView2
 	        android:id="@+id/image" 
 	        android:layout_width="fill_parent" 
 	    	android:layout_height="131dp"
