@@ -66,6 +66,21 @@ public class CurrentCityDb extends SQLiteOpenHelper{
 		return mCount;
 	}
 	
+	public Cursor getAllFeatureResto(SQLiteDatabase db){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" as a JOIN feature as b ON a.id_resto = b.id_resto order by cast(b.orders as int) ASC", null);
+		return mCount;
+	}
+	
+	public Cursor getRandomResto(SQLiteDatabase db){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" ORDER BY RANDOM() LIMIT 10", null);
+		return mCount;
+	}
+	
+	public Cursor getRandomRestoCity(SQLiteDatabase db, String city){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" WHERE resto_nama LIKE '%"+city+"%' ORDER BY RANDOM() LIMIT 10", null);
+		return mCount;
+	}
+	
 	public Cursor getRestoMenu(SQLiteDatabase db, String idresto){
 		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_MENU+" where id_menu IS NOT NULL and id_resto= "+idresto+" order by cast(id_menu as int) ASC", null);
 		return mCount;

@@ -38,9 +38,9 @@
     <string name="price">Rp 15.000</string>
 
     <!-- dashboard part -->
-    <string name="feature">Feature Places Bandung</string>
-    <string name="top">Top Places Bandung</string>
-    <string name="top2">Top Places Indonesia</string>
+    <string name="feature">Feature Places</string>
+    <string name="top">Random Places Bandung</string>
+    <string name="top2">Random Places Indonesia</string>
     <string name="resto">resto</string>
     <string name="title_activity_restaurant_list">RestaurantListActivity</string>
     <string name="action_settings">Settings</string>

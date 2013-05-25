@@ -25,7 +25,7 @@ public class SquareTextView extends TextView{
 	    @SuppressWarnings("unused")
 		int width = MeasureSpec.getSize(widthMeasureSpec);
 	    int height = MeasureSpec.getSize(heightMeasureSpec);
-	    int h = (int) (30);
+	    int h = (int) (60);
 	    setMeasuredDimension(height, h);
 	}
 }

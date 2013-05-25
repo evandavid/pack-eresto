@@ -45,6 +45,31 @@ public class Resto {
 	     return resto;
 	 }
 	 
+	 public Resto[] getAllFeatureResto(){
+		 dbhelper = new CurrentCityDb(this.context);
+	     db = dbhelper.getWritableDatabase();
+	     Cursor cursor = dbhelper.getAllFeatureResto(db);
+	     Resto[] resto = construtResto(cursor);
+	     return resto;
+	 }
+	 
+	 public Resto[] getRandomResto(){
+		 dbhelper = new CurrentCityDb(this.context);
+	     db = dbhelper.getWritableDatabase();
+	     Cursor cursor = dbhelper.getRandomResto(db);
+	     Resto[] resto = construtResto(cursor);
+	     return resto;
+	 }
+	 
+	 public Resto[] getRandomRestoCity(){
+		 dbhelper = new CurrentCityDb(this.context);
+	     db = dbhelper.getWritableDatabase();
+	     String city = dbhelper.getCity(db);
+	     Cursor cursor = dbhelper.getRandomRestoCity(db, city);
+	     Resto[] resto = construtResto(cursor);
+	     return resto;
+	 }
+	 
 	 private Resto[] construtResto(Cursor cursor){
 		 Resto[] resto = new Resto[cursor.getCount()];
 		 int i = 0;

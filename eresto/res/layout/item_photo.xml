@@ -17,7 +17,7 @@
 	        android:layout_width="fill_parent" 
 	    	android:layout_height="131dp"
 	    	android:background="@drawable/logo2"
-	    	android:scaleType="fitXY"
+	    	android:scaleType="centerInside"
 	    	android:contentDescription="@string/image_horizontal"/>
 	    
     </LinearLayout>
