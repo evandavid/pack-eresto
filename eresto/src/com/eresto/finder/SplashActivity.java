@@ -181,6 +181,10 @@ public class SplashActivity extends Activity {
 		        	 this.feature_field[1] = "id_resto";
 		        	 this.feature_field[2] = "orders";
 		        	 
+		        	 this.dbcity.DeleteTable(db, "resto");
+		        	 this.dbcity.DeleteTable(db, "menu");
+		        	 this.dbcity.DeleteTable(db, "photo");
+		        	 this.dbcity.DeleteTable(db, "feature");
 		        	 this.dbcity.saveDataBulk(db, this.resto, this.resto_field, "resto");
 		        	 this.dbcity.saveDataBulk(db, this.menu, this.menu_field, "menu");
 		        	 this.dbcity.saveDataBulk(db, this.photo, this.photo_field, "photo");

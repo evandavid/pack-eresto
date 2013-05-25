@@ -25,6 +25,7 @@ import com.eresto.utils.GPSTracker;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.app.SearchManager;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -69,70 +70,75 @@ public class DashboardActivity extends TabActivity {
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        dbcity = new CurrentCityDb(this);
-        db = dbcity.getWritableDatabase();
-        
-        // Get inflator so we can start creating the custom view for tab
-        inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        // Get tab manager
-        tabHost = getTabHost();
-        
-        // This converts the custom tab view we created and injects it into the tab widget
-        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
-        tab.setLayoutParams(params);
-        label = (TextView) tab.findViewById(R.id.tabLabel);
-        label.setText("home");
-        divider = (TextView) tab.findViewById(R.id.tabSelectedDivider);
-        divider.setVisibility(View.VISIBLE);
-        intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("username", "extra");
-        spec = tabHost.newTabSpec("home").setIndicator(tab).setContent(intent);
-        tabHost.addTab(spec);
-        
-        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
-        tab.setLayoutParams(params);
-        label = (TextView) tab.findViewById(R.id.tabLabel);
-        label.setText("restaurants");
-        divider = (TextView) tab.findViewById(R.id.tabSelectedDivider);
-        intent = new Intent(this, RestaurantListActivity.class);
-        intent.putExtra("username", "extra");
-        spec = tabHost.newTabSpec("restaurants").setIndicator(tab).setContent(intent);
-        tabHost.addTab(spec);
-        
-        
-        // Add another tab
-        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
-        tab.setLayoutParams(params);
-        label = (TextView) tab.findViewById(R.id.tabLabel);
-        label.setText("events &promos");
-        divider = (TextView) tab.findViewById(R.id.tabSplitter);
-        divider.setVisibility(View.GONE);
-        intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("content", "member");
-        spec = tabHost.newTabSpec("promos").setIndicator(tab).setContent(intent);
-        tabHost.addTab(spec);
-        
-        
-        // Listener to detect when a tab has changed. I added this just to show 
-        // how you can change UI to emphasize the selected tab
-        tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-            public void onTabChanged(String tag) {
-                // reset some styles
-                clearTabStyles();
-                View tabView = null;
-                // Use the "tag" for the tab spec to determine which tab is selected
-                if (tag.equals("home")) {
-                    tabView = getTabWidget().getChildAt(0);
-                }
-                else if (tag.equals("restaurants")) {
-                    tabView = getTabWidget().getChildAt(1);
-                }
-                else if (tag.equals("promos")) {
-                    tabView = getTabWidget().getChildAt(2);
-                }
-                tabView.findViewById(R.id.tabSelectedDivider).setVisibility(View.VISIBLE);
-            }       
-        });
+        if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+            String query = getIntent().getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }else{
+	        dbcity = new CurrentCityDb(this);
+	        db = dbcity.getWritableDatabase();
+	        
+	        // Get inflator so we can start creating the custom view for tab
+	        inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	        // Get tab manager
+	        tabHost = getTabHost();
+	        
+	        // This converts the custom tab view we created and injects it into the tab widget
+	        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
+	        tab.setLayoutParams(params);
+	        label = (TextView) tab.findViewById(R.id.tabLabel);
+	        label.setText("home");
+	        divider = (TextView) tab.findViewById(R.id.tabSelectedDivider);
+	        divider.setVisibility(View.VISIBLE);
+	        intent = new Intent(this, HomeActivity.class);
+	        intent.putExtra("username", "extra");
+	        spec = tabHost.newTabSpec("home").setIndicator(tab).setContent(intent);
+	        tabHost.addTab(spec);
+	        
+	        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
+	        tab.setLayoutParams(params);
+	        label = (TextView) tab.findViewById(R.id.tabLabel);
+	        label.setText("restaurants");
+	        divider = (TextView) tab.findViewById(R.id.tabSelectedDivider);
+	        intent = new Intent(this, RestaurantListActivity.class);
+	        intent.putExtra("username", "extra");
+	        spec = tabHost.newTabSpec("restaurants").setIndicator(tab).setContent(intent);
+	        tabHost.addTab(spec);
+	        
+	        
+	        // Add another tab
+	        tab = inflater.inflate(R.layout.tab, getTabWidget(), false);
+	        tab.setLayoutParams(params);
+	        label = (TextView) tab.findViewById(R.id.tabLabel);
+	        label.setText("events &promos");
+	        divider = (TextView) tab.findViewById(R.id.tabSplitter);
+	        divider.setVisibility(View.GONE);
+	        intent = new Intent(this, HomeActivity.class);
+	        intent.putExtra("content", "member");
+	        spec = tabHost.newTabSpec("promos").setIndicator(tab).setContent(intent);
+	        tabHost.addTab(spec);
+	        
+	        
+	        // Listener to detect when a tab has changed. I added this just to show 
+	        // how you can change UI to emphasize the selected tab
+	        tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+	            public void onTabChanged(String tag) {
+	                // reset some styles
+	                clearTabStyles();
+	                View tabView = null;
+	                // Use the "tag" for the tab spec to determine which tab is selected
+	                if (tag.equals("home")) {
+	                    tabView = getTabWidget().getChildAt(0);
+	                }
+	                else if (tag.equals("restaurants")) {
+	                    tabView = getTabWidget().getChildAt(1);
+	                }
+	                else if (tag.equals("promos")) {
+	                    tabView = getTabWidget().getChildAt(2);
+	                }
+	                tabView.findViewById(R.id.tabSelectedDivider).setVisibility(View.VISIBLE);
+	            }       
+	        });
+        }
     }
     
     private void clearTabStyles() {
@@ -237,4 +243,35 @@ public class DashboardActivity extends TabActivity {
     	startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     	startActivity(startMain);
     }
+    
+    private void handleIntent(Intent intent) { 
+	    if (Intent.ACTION_SEARCH.equals(intent.getAction())) { 
+	       String query =  intent.getStringExtra(SearchManager.QUERY); 
+	   	 doSearch(query);
+	   	 this.finish();
+	    } 
+	  }    
+	  
+	  /** handle search button pressed */
+	  public void searchPressed(View view){
+	  	onSearchRequested();
+	  }
+	  
+	  /** override onsearchRequested */
+	  @Override
+	  public boolean onSearchRequested(){
+	  	super.onSearchRequested();
+	  	String query = getIntent().getStringExtra(SearchManager.QUERY);
+	  	doSearch(query);
+	  	return true;
+	  }
+	  
+	  private void doSearch(String q) { 
+	  	if(q != null){
+	  		Intent myIntent = new Intent(this, RestaurantListSearchActivity.class);
+	        myIntent.putExtra("search", q);
+	      	this.startActivity(myIntent);
+	      	this.finish();
+	  	}
+	  }
 }

@@ -31,6 +31,15 @@
             android:textColor="#fff"
             android:textSize="20sp" 
             android:gravity="center"/>
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/image_desc"
+            android:onClick="searchPressed"
+            android:src="@drawable/ic_action_search" />
 
     </RelativeLayout>
     
@@ -71,7 +80,8 @@
         android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
-        android:layout_below="@id/header" >
+        android:layout_below="@id/header"
+        android:orientation="horizontal" >
         
     </LinearLayout>
 

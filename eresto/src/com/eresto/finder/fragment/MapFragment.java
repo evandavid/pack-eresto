@@ -8,28 +8,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.eresto.finder.R;
+import com.eresto.finder.model.Resto;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment {
+	@SuppressWarnings("unused")
 	private int mCurrentPage;
-	private LinearLayout body;
-	private ScrollView _scroll;
-	private String number;
 	static final LatLng HAMBURG = new LatLng(53.558, 9.927);
 	static final LatLng KIEL = new LatLng(53.551, 9.993);
+	static LatLng positions;
 	private GoogleMap map;
+	public String id_resto;
+	public Resto resto;
 	 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,40 +42,30 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_map_fragment, container,false);
-//        TextView _number = (TextView)v.findViewById(R.id.telephone);
-//        number = _number.getText().toString().replace("-", "");
-////        RelativeLayout map = (RelativeLayout)v.findViewById(R.id.map);
-////        map.setVisibility(View.GONE);
-//        //call
-//        ImageView tel_logo = (ImageView)v.findViewById(R.id.telephone_logo);
-//        tel_logo.setOnClickListener(telephoneListener);
-//        _number.setOnClickListener(telephoneListener);
+        this.id_resto = getArguments().getString("id_resto");
+        this.resto = new Resto(getActivity());
+        this.resto = this.resto.getResto(this.id_resto);
+        
         if (haveNetworkConnection()){
-//        	WebView wv = (WebView)v.findViewById(R.id.map);
         	Fragment fragment = getFragmentManager().findFragmentById(R.id.map);
             SupportMapFragment mapFragment = (SupportMapFragment)fragment;
             map = mapFragment.getMap();
-//        	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-////        	        .getMap();
-        	    Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-        	        .title("Hamburg"));
-        	    Marker kiel = map.addMarker(new MarkerOptions()
-        	        .position(KIEL)
-        	        .title("Kiel")
-        	        .snippet("Kiel is cool")
-        	        .icon(BitmapDescriptorFactory
-        	            .fromResource(R.drawable.ic_launcher)));
+            positions = new LatLng(Double.valueOf(this.resto.resto_latt), Double.valueOf(this.resto.resto_long));
+        	    @SuppressWarnings("unused")
+				Marker hamburg = map.addMarker(new MarkerOptions().position(positions)
+        	        .title(this.resto.resto_nama));
 
         	    // Move the camera instantly to hamburg with a zoom of 15.
-        	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+        	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(positions, 15));
 
         	    // Zoom in, animating the camera.
         	    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
             TextView tv = (TextView)v.findViewById(R.id.des);
             tv.setVisibility(View.GONE);
-//            map.setVisibility(View.VISIBLE);
-//            wv.loadUrl("file:///android_asset/index.html");
-//            wv.loadUrl("javascript:alert('functionThatReturnsSomething')");
+        }else {
+        	TextView tv = (TextView)v.findViewById(R.id.des);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText("You don't have internet connection :(");
         }
         return v;
     }

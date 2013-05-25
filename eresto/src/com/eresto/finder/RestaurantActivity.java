@@ -32,46 +32,50 @@ public class RestaurantActivity extends FragmentActivity {
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
-        handleIntent(getIntent()); 
-        this.id_resto = getIntent().getStringExtra("id_resto");
-        this.resto = new Resto(this);
-        this.resto = this.resto.getResto(this.id_resto);
-        this.resto_name = (TextView)findViewById(R.id.restorant_name);
-        this.resto_name.setText(this.resto.resto_nama);
-        
-        float roundX = 40;
-//        imageLoaderCover=new ImageLoader(this.getApplicationContext());
-//        ImageView image_cover=(ImageView)findViewById(R.id.cover_image);
-//    	imageLoaderCover.DisplayImage("http://www.millenniumhotels.co.uk/content/dam/uk/en/millennium-knightsbridge/images/UK.FB.KNI.Le-Chinois.jpg", image_cover);
-    	
-    	imageLoader=new getRoundedCornerBitmap(this.getApplicationContext(),roundX);
-        ImageView image=(ImageView)findViewById(R.id.image);
-    	Bitmap bmp;
-    	try {
-    		bmp = imageLoader.getBitmap(this.resto.resto_thumb);
-		} catch (Exception e) {
-			bmp = null;
-		}
-        Drawable myIcon = this.getResources().getDrawable( R.drawable.logo3);
-        if (stringContainsItemFromList(this.resto.resto_thumb, filter)){
-        	if (bmp != null)
-        		imageLoader.DisplayImage(this.resto.resto_thumb, image);
-        	else
+        if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+            String query = getIntent().getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }else{
+	        this.id_resto = getIntent().getStringExtra("id_resto");
+	        this.resto = new Resto(this);
+	        this.resto = this.resto.getResto(this.id_resto);
+	        this.resto_name = (TextView)findViewById(R.id.restorant_name);
+	        this.resto_name.setText(this.resto.resto_nama);
+	        
+	        float roundX = 40;
+	//        imageLoaderCover=new ImageLoader(this.getApplicationContext());
+	//        ImageView image_cover=(ImageView)findViewById(R.id.cover_image);
+	//    	imageLoaderCover.DisplayImage("http://www.millenniumhotels.co.uk/content/dam/uk/en/millennium-knightsbridge/images/UK.FB.KNI.Le-Chinois.jpg", image_cover);
+	    	
+	    	imageLoader=new getRoundedCornerBitmap(this.getApplicationContext(),roundX);
+	        ImageView image=(ImageView)findViewById(R.id.image);
+	    	Bitmap bmp;
+	    	try {
+	    		bmp = imageLoader.getBitmap(this.resto.resto_thumb);
+			} catch (Exception e) {
+				bmp = null;
+			}
+	        Drawable myIcon = this.getResources().getDrawable( R.drawable.logo3);
+	        if (stringContainsItemFromList(this.resto.resto_thumb, filter)){
+	        	if (bmp != null)
+	        		imageLoader.DisplayImage(this.resto.resto_thumb, image);
+	        	else
+		        	image.setImageDrawable(myIcon);
+	        }
+	        else
 	        	image.setImageDrawable(myIcon);
+	    	
+	    	ViewPager pager = (ViewPager) findViewById(R.id.pager);
+	    	 
+	        /** Getting fragment manager */
+	        FragmentManager fm = getSupportFragmentManager();
+	 
+	        /** Instantiating FragmentPagerAdapter */
+	        RestaurantFragmentAdapter pagerAdapter = new RestaurantFragmentAdapter(fm, this.id_resto);
+	 
+	        /** Setting the pagerAdapter to the pager object */
+	        pager.setAdapter(pagerAdapter);
         }
-        else
-        	image.setImageDrawable(myIcon);
-    	
-    	ViewPager pager = (ViewPager) findViewById(R.id.pager);
-    	 
-        /** Getting fragment manager */
-        FragmentManager fm = getSupportFragmentManager();
- 
-        /** Instantiating FragmentPagerAdapter */
-        RestaurantFragmentAdapter pagerAdapter = new RestaurantFragmentAdapter(fm, this.id_resto);
- 
-        /** Setting the pagerAdapter to the pager object */
-        pager.setAdapter(pagerAdapter);
     }
     
     public void onNewIntent(Intent intent) { 
@@ -100,6 +104,7 @@ public class RestaurantActivity extends FragmentActivity {
       if (Intent.ACTION_SEARCH.equals(intent.getAction())) { 
          String query =  intent.getStringExtra(SearchManager.QUERY); 
      	 doSearch(query);
+     	 this.finish();
       } 
     }    
     
@@ -119,7 +124,10 @@ public class RestaurantActivity extends FragmentActivity {
     
     private void doSearch(String q) { 
     	if(q != null){
-    		Toast.makeText(this, q, Toast.LENGTH_LONG).show();
+    		Intent myIntent = new Intent(this, RestaurantListSearchActivity.class);
+	        myIntent.putExtra("search", q);
+        	this.startActivity(myIntent);
+        	this.finish();
     	}
     }
     

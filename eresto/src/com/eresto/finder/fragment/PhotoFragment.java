@@ -2,6 +2,7 @@ package com.eresto.finder.fragment;
 
 import com.eresto.finder.R;
 import com.eresto.finder.adapter.PhotoAdapter;
+import com.eresto.finder.model.Resto;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ public class PhotoFragment extends Fragment {
 	int mCurrentPage;
 	private static String[] data1 = new String[15];
 	private PhotoAdapter adapter;
+	public String id_resto;
+	public Resto resto;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,11 @@ public class PhotoFragment extends Fragment {
      @Override
      public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          View v = inflater.inflate(R.layout.activity_photo_fragment, container,false);
-         for (int i = 0; i < 15; i++){
-         	data1[i] = "http://bisnis-jabar.com/wp-content/uploads/2011/08/bober.gif";
-         }
+         this.id_resto = getArguments().getString("id_resto");
+         this.resto = new Resto(getActivity());
+         this.resto = this.resto.getResto(this.id_resto);
          
-         adapter = new PhotoAdapter(v.getContext(), data1);
+         adapter = new PhotoAdapter(v.getContext(), this.resto.photo);
          
          // feature
          GridView feature = (GridView)v.findViewById(R.id.gridView1);  

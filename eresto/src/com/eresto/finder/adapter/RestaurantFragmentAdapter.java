@@ -34,6 +34,7 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 		case 1:
 			MenuFragment menu = new MenuFragment();
 	        Bundle data_menu = new Bundle();
+	        data_menu.putString("id_resto", id);
 	        data_menu.putInt("current_page", arg0+1);
 	        menu.setArguments(data_menu);
 	        return menu;
@@ -41,18 +42,21 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 			PhotoFragment photo = new PhotoFragment();
 	        Bundle data_photo = new Bundle();
 	        data_photo.putInt("current_page", arg0+1);
+	        data_photo.putString("id_resto", id);
 	        photo.setArguments(data_photo);
 	        return photo;
 		case 3:
 			MapFragment myFragment = new MapFragment();
 	        Bundle data = new Bundle();
 	        data.putInt("current_page", arg0+1);
+	        data.putString("id_resto", id);
 	        myFragment.setArguments(data);
 	        return myFragment;
 		default:
 			EventFragment Event = new EventFragment();
 	        Bundle data_Event = new Bundle();
 	        data_Event.putInt("current_page", arg0+1);
+	        data_Event.putString("id_resto", id);
 	        Event.setArguments(data_Event);
 	        return Event;
 			

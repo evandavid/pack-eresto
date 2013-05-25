@@ -18,12 +18,14 @@ public class PreviewActivity extends Activity {
 	public ImageLoader imageLoader;
 	private Matrix imageMatrix;
 	protected ProgressDialog loading;
+	public String url;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_preview);
+		this.url = getIntent().getStringExtra("url");
 		this.loading = ProgressDialog
 				.show(this, "", "Downloading image, please wait..", true);
 		this.loading.setCancelable(false);
@@ -34,7 +36,7 @@ public class PreviewActivity extends Activity {
 		mImage.setDisplayType( DisplayType.FIT_IF_BIGGER );
 		
 		imageLoader=new ImageLoader(this.getApplicationContext());
-		Bitmap bitmap = imageLoader.getBitmap("http://bisnis-jabar.com/wp-content/uploads/2011/08/bober.gif");
+		Bitmap bitmap = imageLoader.getBitmap(this.url);
 		if( null != bitmap )
 		{
 			// calling this will force the image to fit the ImageView container width/height
@@ -46,13 +48,12 @@ public class PreviewActivity extends Activity {
 				// previous matrix once the bitmap is changed
 				// imageMatrix = mImage.getDisplayMatrix();
 			}
-//			System.out.println("haha "+bitmap);
 			mImage.setImageBitmap( bitmap, imageMatrix.isIdentity() ? null : imageMatrix, ImageViewTouchBase.ZOOM_INVALID, ImageViewTouchBase.ZOOM_INVALID );
-//			Toast.makeText( this, "success to load the image", Toast.LENGTH_LONG ).show();
 			this.loading.dismiss();
 		} else {
 			this.loading.dismiss();
 			Toast.makeText( this, "Failed to load the image", Toast.LENGTH_LONG ).show();
+			this.finish();
 		}
 	}
 

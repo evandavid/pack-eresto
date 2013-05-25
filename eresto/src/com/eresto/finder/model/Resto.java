@@ -70,6 +70,14 @@ public class Resto {
 	     return resto;
 	 }
 	 
+	 public Resto[] getSearchResto(String offset, String q ){
+		 dbhelper = new CurrentCityDb(this.context);
+	     db = dbhelper.getWritableDatabase();
+	     Cursor cursor = dbhelper.getSearchResto(db, offset, q);
+	     Resto[] resto = construtResto(cursor);
+	     return resto;
+	 }
+	 
 	 public Resto getResto(String id){
 		 dbhelper = new CurrentCityDb(this.context);
 	     db = dbhelper.getWritableDatabase();

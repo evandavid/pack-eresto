@@ -54,9 +54,9 @@ public class OverviewFragment extends Fragment {
     			
     	telpon.setText(this.resto.resto_telp.replace("-", ""));
     	address.setText(this.resto.resto_alamat+"\n"+this.resto.nama_kota);
-    	website.setText(this.resto.resto_web+"\n"+this.resto.resto_email+"\n"+this.resto.resto_fb+"\n"+this.resto.resto_twitter);
-    	price.setText("Rp "+this.resto.resto_harga1+" - Rp "+this.resto.resto_harga2);
-    	working.setText("everyday : "+this.resto.resto_jamb+" - "+this.resto.resto_jamt);
+    	website.setText(this.resto.resto_web+"\nemail: "+this.resto.resto_email+"\nfacebook: "+this.resto.resto_fb+"\ntwitter: "+this.resto.resto_twitter);
+    	price.setText("Rp "+this.resto.resto_harga1+" - Rp"+this.resto.resto_harga2);
+    	working.setText("everyday: "+this.resto.resto_jamb+" - "+this.resto.resto_jamt);
     	category.setText(this.resto.kategori);
         //call
         ImageView tel_logo = (ImageView)v.findViewById(R.id.telephone_logo);

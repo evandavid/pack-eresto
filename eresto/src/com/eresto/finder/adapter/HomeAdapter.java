@@ -86,12 +86,10 @@ public class HomeAdapter extends BaseAdapter implements OnClickListener{
 //		        table.setText("Table "+data[position][1]);
 //		        first.setText(data[position][3]+"/");
 //		        second.setText(data[position][2]);
-		        
 		        vi.setOnClickListener(new OnClickListener() {
 	                public void onClick(View v) {
 	                	Intent myIntent = new Intent(activity, RestaurantActivity.class);
-//			        	myIntent.putExtra("name", data[position][7]);
-//			        	myIntent.putExtra("username", data[position][5]);
+			        	myIntent.putExtra("id_resto", data[position].id_resto);
 	                	activity.startActivity(myIntent);
 	                }
 	            });

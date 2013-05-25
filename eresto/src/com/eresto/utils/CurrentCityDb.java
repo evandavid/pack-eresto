@@ -66,6 +66,15 @@ public class CurrentCityDb extends SQLiteOpenHelper{
 		return mCount;
 	}
 	
+	public Cursor getSearchResto(SQLiteDatabase db, String limit, String quer){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" WHERE resto_nama LIKE '%"+quer+"%' order by cast(id_resto as int) ASC LIMIT 10 OFFSET "+limit, null);
+		return mCount;
+	}
+	
+	public void DeleteTable(SQLiteDatabase db, String dbname){
+		db.rawQuery("DELETE FROM "+dbname, null);
+	}
+	
 	public Cursor getAllFeatureResto(SQLiteDatabase db){
 		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" as a JOIN feature as b ON a.id_resto = b.id_resto order by cast(b.orders as int) ASC", null);
 		return mCount;
