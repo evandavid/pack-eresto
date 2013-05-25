@@ -69,45 +69,45 @@
 	            android:layout_height="100dp"
 	            android:background="#8264543D"
 	            android:gravity="center_vertical" >
-	            
-	            <ImageView 
+
+	            <ImageView
+	                android:id="@+id/cover_image"
 	                android:layout_width="match_parent"
-	            	android:layout_height="100dp"
-	            	android:id="@+id/cover_image"
-	            	android:layout_alignParentTop="true"
+	                android:layout_height="100dp"
+	                android:layout_alignParentTop="true"
+	                android:background="@drawable/bg_cover"
 	                android:contentDescription="@string/image_desc"
-	            	android:scaleType="centerCrop"
-	            	android:background="@drawable/bg_cover"
-	            	/>
-	            
-		        <TextView
-		            android:id="@+id/restorant_name"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_marginLeft="15dp"
-		            android:layout_marginTop="12dp"
-		            android:text="@string/restaurant_name"
-		            android:textColor="#fff"
-		            android:textSize="18sp"
-		            android:textStyle="bold" />
-		        
-		        <LinearLayout 
-		            android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_marginLeft="15dp"
-			        android:layout_below="@+id/restorant_name">
-	
-		            <RatingBar
-		                android:id="@+id/ratingBar1"
-		                style="@style/foodRatingBar" 
-		                android:layout_width="wrap_content"
-		                android:numStars="5"
-		                android:layout_height="wrap_content" />
-		            	
-		        </LinearLayout>
-		        
+	                android:scaleType="centerCrop" />
+
+	            <TextView
+	                android:id="@+id/restorant_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentLeft="true"
+	                android:layout_marginLeft="15dp"
+	                android:layout_marginRight="100dp"
+	                android:layout_marginTop="12dp"
+	                android:text="@string/restaurant_name"
+	                android:textColor="#fff"
+	                android:textSize="18sp"
+	                android:textStyle="bold" />
+
+	            <LinearLayout
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_below="@+id/restorant_name"
+	                android:layout_marginLeft="15dp" >
+
+	                <RatingBar
+	                    android:id="@+id/ratingBar1"
+	                    style="@style/foodRatingBar"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:numStars="5" />
+	            </LinearLayout>
+
 	            <!-- rounded image -->
+
 	            <LinearLayout
 	                android:layout_width="83dp"
 	                android:layout_height="83dp"
@@ -115,21 +115,18 @@
 	                android:layout_marginRight="15dp"
 	                android:layout_marginTop="10dp"
 	                android:background="@drawable/rounded_image" >
-	                
+
 	                <ImageView
 	                    android:id="@+id/image"
-	                    android:contentDescription="@string/image_desc"
 	                    android:layout_width="80dp"
 	                    android:layout_height="80dp"
-	                    android:background="@drawable/logo3"
 	                    android:layout_gravity="center"
 	                    android:layout_margin="1dp"
-	                    android:scaleType="fitXY"
-	                     />
-	                
+	                    android:background="@drawable/logo3"
+	                    android:contentDescription="@string/image_desc"
+	                    android:scaleType="fitXY" />
 	            </LinearLayout>
-            
-        	</RelativeLayout>
+	        </RelativeLayout>
 	        
 	        <android.support.v4.view.ViewPager
 		        android:id="@+id/pager"

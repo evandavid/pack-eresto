@@ -70,6 +70,14 @@ public class Resto {
 	     return resto;
 	 }
 	 
+	 public Resto getResto(String id){
+		 dbhelper = new CurrentCityDb(this.context);
+	     db = dbhelper.getWritableDatabase();
+	     Cursor cursor = dbhelper.getResto(db, id);
+	     Resto[] resto = construtResto(cursor);
+	     return resto[0];
+	 }
+	 
 	 private Resto[] construtResto(Cursor cursor){
 		 Resto[] resto = new Resto[cursor.getCount()];
 		 int i = 0;

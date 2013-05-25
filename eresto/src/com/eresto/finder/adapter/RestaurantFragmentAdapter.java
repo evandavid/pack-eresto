@@ -12,10 +12,12 @@ import android.support.v4.app.FragmentPagerAdapter;
  
 public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 	final int PAGE_COUNT = 5;
+	public String id;
 	 
     /** Constructor of the class */
-    public RestaurantFragmentAdapter(FragmentManager fm) {
+    public RestaurantFragmentAdapter(FragmentManager fm, String id) {
         super(fm);
+        this.id = id;
     }
  
     /** This method will be invoked when a page is requested to create */
@@ -26,6 +28,7 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 			OverviewFragment overview = new OverviewFragment();
 	        Bundle data_overview = new Bundle();
 	        data_overview.putInt("current_page", arg0+1);
+	        data_overview.putString("id_resto", id);
 	        overview.setArguments(data_overview);
 	        return overview;
 		case 1:

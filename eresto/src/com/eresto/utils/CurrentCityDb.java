@@ -76,6 +76,11 @@ public class CurrentCityDb extends SQLiteOpenHelper{
 		return mCount;
 	}
 	
+	public Cursor getResto(SQLiteDatabase db, String id){
+		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" WHERE id_resto = "+id+" LIMIT 1", null);
+		return mCount;
+	}
+	
 	public Cursor getRandomRestoCity(SQLiteDatabase db, String city){
 		Cursor mCount = db.rawQuery("SELECT * FROM "+DATABASE_TABLE_RESTO+" WHERE resto_nama LIKE '%"+city+"%' ORDER BY RANDOM() LIMIT 10", null);
 		return mCount;

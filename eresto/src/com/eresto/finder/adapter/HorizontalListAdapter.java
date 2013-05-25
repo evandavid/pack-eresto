@@ -57,7 +57,7 @@ public class HorizontalListAdapter extends BaseAdapter {
 	    return false;
 	}
     
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
     	View vi=convertView;
         if(convertView==null)
 	            vi = inflater.inflate(R.layout.item_horizontal_image, null);
@@ -65,7 +65,6 @@ public class HorizontalListAdapter extends BaseAdapter {
 	        TextView text=(TextView)vi.findViewById(R.id.text);
 	        SquareImageView image=(SquareImageView)vi.findViewById(R.id.image);
 	        text.getLayoutParams().width=image.viewWidth;
-//	        text.setLayoutParams(new LayoutParams(image.getWidth(), 30));
 	        
         	text.setText(data[position].resto_nama);
         	
@@ -84,8 +83,7 @@ public class HorizontalListAdapter extends BaseAdapter {
         	image.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 		        	Intent myIntent = new Intent(activity, RestaurantActivity.class);
-//			        	myIntent.putExtra("name", data[position][7]);
-//			        	myIntent.putExtra("username", data[position][5]);
+			        myIntent.putExtra("id_resto", data[position].id_resto);
 		        	activity.startActivity(myIntent);
 				}
 			});
