@@ -20,7 +20,7 @@ public class RestaurantListActivity extends Activity {
 	public String[][] data = new String[5][2];
 	public PullToRefreshListView _list;
 	public Resto[] resto;
-	public String offset = "10";
+	public String offset = "0";
 
 	@SuppressWarnings("deprecation")
 	@Override

@@ -56,12 +56,8 @@ public class RestaurantActivity extends FragmentActivity {
 				bmp = null;
 			}
 	        Drawable myIcon = this.getResources().getDrawable( R.drawable.logo3);
-	        if (stringContainsItemFromList(this.resto.resto_thumb, filter)){
-	        	if (bmp != null)
-	        		imageLoader.DisplayImage(this.resto.resto_thumb, image);
-	        	else
-		        	image.setImageDrawable(myIcon);
-	        }
+	        if (stringContainsItemFromList(this.resto.resto_thumb, filter))
+	        	imageLoader.DisplayImage(this.resto.resto_thumb, image);
 	        else
 	        	image.setImageDrawable(myIcon);
 	    	

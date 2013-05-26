@@ -25,7 +25,7 @@ public class RestaurantListSearchActivity extends Activity {
 	public String[][] data = new String[5][2];
 	public PullToRefreshListView _list;
 	public Resto[] resto;
-	public String offset = "10";
+	public String offset = "0";
 	public String search;
 
 	@SuppressWarnings("deprecation")
@@ -66,6 +66,7 @@ public class RestaurantListSearchActivity extends Activity {
     public void onBackPressed(){
 		super.onBackPressed();
 		Intent myIntent = new Intent(this, DashboardActivity.class);
+		myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     	this.startActivity(myIntent);
     	this.finish();
     }

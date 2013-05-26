@@ -1,9 +1,11 @@
 package com.eresto.finder.adapter;
 
+import com.eresto.finder.PreviewActivity;
 import com.eresto.finder.R;
 import com.eresto.finder.RestaurantActivity;
 import com.eresto.finder.model.Resto;
 import com.eresto.utils.ImageLoader;
+import com.google.android.gms.internal.da;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,16 +19,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HomeAdapter extends BaseAdapter implements OnClickListener{
+public class EventAdapter extends BaseAdapter implements OnClickListener{
     
     private Activity activity;
-    private Resto[] data;
+    private String[][] data;
     private static LayoutInflater inflater=null;
 	public String username;
 	public ImageLoader imageLoader;
 	public String[] filter = new String[]{"jpg", "jpeg", "png", "gif"};
     
-    public HomeAdapter(Activity a, Resto[] d) {
+    public EventAdapter(Activity a, String[][] d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,33 +62,34 @@ public class HomeAdapter extends BaseAdapter implements OnClickListener{
     public View getView(final int position, View convertView, ViewGroup parent) {
     	View vi=convertView;
         if(convertView==null)
-	    		 vi = inflater.inflate(R.layout.item_list_resto_image, null);
+	    		 vi = inflater.inflate(R.layout.item_list_event, null);
 	           
-	    if(data[position] != null){
-	    	
-//	    		TextView table=(TextView)vi.findViewById(R.id.table);
+	    if(data.length > 0){
 		        TextView name=(TextView)vi.findViewById(R.id.resto_name);
 		        TextView alamat=(TextView)vi.findViewById(R.id.alamat);
 		        ImageView image=(ImageView)vi.findViewById(R.id.image);
-		        Drawable myIcon = activity.getResources().getDrawable( R.drawable.logo2);
-		        if (stringContainsItemFromList(data[position].resto_thumb, filter))
-		        	imageLoader.DisplayImage(data[position].resto_thumb, image);
+		        Drawable myIcon = activity.getResources().getDrawable( R.drawable.logo);
+		        
+		        if (stringContainsItemFromList(data[position][2], filter))
+		        	imageLoader.DisplayImage(data[position][2], image);
 		        else
 		        	image.setImageDrawable(myIcon);
-		        name.setText(data[position].resto_nama);
-		        alamat.setText(data[position].resto_alamat+"\n"+data[position].resto_telp+"\nBuka : "+data[position].resto_jamb+" - "+data[position].resto_jamt);
-//		        
-//		        vi.setTag(data[position][0]);
-//		        table.setText("Table "+data[position][1]);
-//		        first.setText(data[position][3]+"/");
-//		        second.setText(data[position][2]);
-		        vi.setOnClickListener(new OnClickListener() {
-	                public void onClick(View v) {
-	                	Intent myIntent = new Intent(activity, RestaurantActivity.class);
-			        	myIntent.putExtra("id_resto", data[position].id_resto);
-	                	activity.startActivity(myIntent);
-	                }
-	            });
+		        name.setText(data[position][0]);
+		        String jenis;
+		        if (data[position][6].equals("0"))
+		        	jenis = "Gratis";
+		        else
+		        	jenis = "Berbayar";
+		        String desc = "Restoran: "+data[position][1]+"\nDeskripsi: "+data[position][5]+"\nMulai promo: "+data[position][3]+"\nAkhir promo: "+data[position][4]+"\nJenis promo: "+jenis;
+		        alamat.setText(desc);
+
+		        image.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+			        	Intent myIntent = new Intent(activity, PreviewActivity.class);
+				        myIntent.putExtra("url", data[position][2]);
+			        	activity.startActivity(myIntent);
+					}
+				});
         }
 	    convertView = null;
         return vi;

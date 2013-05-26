@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.eresto.finder.fragment.MapFragment;
 import com.eresto.utils.ConvertStreamToString;
 import com.eresto.utils.CurrentCityDb;
 
@@ -26,7 +27,6 @@ import android.view.Window;
 import android.widget.Toast;
 
 public class SplashActivity extends Activity {
-	private final int SPLASH_DISPLAY_LENGHT = 2500;
 	private CurrentCityDb dbcity;
 	private SQLiteDatabase db = null;
 	private String city;
@@ -59,27 +59,35 @@ public class SplashActivity extends Activity {
 	@Override
     protected void onResume() {
         super.onResume();
-        if (this.status.equals("False")) {
-            //first run
-        	this.loading = ProgressDialog
-    				.show(this, "", "Fetch data for the first time, please wait..", true);
-        	this.loading.setCancelable(false);
-        	new Thread(new Runnable() {
-    			public void run() {
-    				getData();
-    			} 		
-    		}).start();
+        boolean hasNetwork = MapFragment.haveNetworkConnection(this);
+        if (hasNetwork){
+	        if (this.status.equals("False")) {
+	            //first run
+	        	this.loading = ProgressDialog
+	    				.show(this, "", "Fetch data for the first time, please wait..", true);
+	        	this.loading.setCancelable(false);
+	        	new Thread(new Runnable() {
+	    			public void run() {
+	    				getData();
+	    			} 		
+	    		}).start();
+	        }else{
+	        	new Handler().postDelayed(new Runnable(){
+	    	        public void run() {    
+	    	        	Intent mainIntent = new Intent(SplashActivity.this,DashboardActivity.class);
+	    	            SplashActivity.this.startActivity(mainIntent);
+	    	            SplashActivity.this.finish();
+	    	        }
+	    	    }, 2000);
+	        }
         }else{
-        	/** New Handler to start the DashboardActivity 
-    	      and close this Splash-Screen after some seconds.**/
-    	    new Handler().postDelayed(new Runnable(){
+        	new Handler().postDelayed(new Runnable(){
     	        public void run() {    
     	        	Intent mainIntent = new Intent(SplashActivity.this,DashboardActivity.class);
     	            SplashActivity.this.startActivity(mainIntent);
-    	            dbcity.close();
     	            SplashActivity.this.finish();
     	        }
-    	    }, SPLASH_DISPLAY_LENGHT);
+    	    }, 2000);
         }
     }
 	

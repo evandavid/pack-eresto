@@ -2,13 +2,11 @@ package com.eresto.finder.adapter;
 
 import com.eresto.finder.PreviewActivity;
 import com.eresto.finder.R;
-import com.eresto.finder.RestaurantActivity;
 import com.eresto.finder.model.Photo;
 import com.eresto.utils.ImageLoader;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,15 +42,10 @@ public class PhotoAdapter extends BaseAdapter {
 				gridView = inflater.inflate(R.layout.item_photo, null);
 		        ImageView image=(ImageView)gridView.findViewById(R.id.image);
 		        
-		        Bitmap bmp = imageLoader.getBitmap(data[position].url);
 		        Drawable myIcon = context.getResources().getDrawable( R.drawable.logo2);
-		        if (stringContainsItemFromList(data[position].url, filter)){
-		        	if (bmp != null)
-		        		imageLoader.DisplayImage(data[position].url, image);
-		        	else
-			        	image.setImageDrawable(myIcon);
-		        }
-		        else
+		        if (stringContainsItemFromList(data[position].url, filter))
+	        		imageLoader.DisplayImage(data[position].url, image);
+	        	else
 		        	image.setImageDrawable(myIcon);
 	        	image.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {

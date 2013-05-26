@@ -7,7 +7,6 @@ import com.eresto.utils.ImageLoader;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,13 +52,10 @@ public class MenuAdapter extends BaseAdapter {
 	        	text.setText(data[position].menu_nama);
 	        	price.setText("Rp"+data[position].menu_harga);
 	        	
-	        	Bitmap bmp = imageLoader.getBitmap(data[position].menu_thumb);
 		        Drawable myIcon = context.getResources().getDrawable( R.drawable.logo2);
+		        System.out.println("url he"+data[position].menu_thumb);
 		        if (stringContainsItemFromList(data[position].menu_thumb, filter)){
-		        	if (bmp != null)
-		        		imageLoader.DisplayImage(data[position].menu_thumb, image);
-		        	else
-			        	image.setImageDrawable(myIcon);
+		        	imageLoader.DisplayImage(data[position].menu_thumb, image);
 		        }
 		        else
 		        	image.setImageDrawable(myIcon);

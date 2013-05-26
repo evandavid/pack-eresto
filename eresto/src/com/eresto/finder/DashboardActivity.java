@@ -112,7 +112,7 @@ public class DashboardActivity extends TabActivity {
 	        label.setText("events &promos");
 	        divider = (TextView) tab.findViewById(R.id.tabSplitter);
 	        divider.setVisibility(View.GONE);
-	        intent = new Intent(this, HomeActivity.class);
+	        intent = new Intent(this, EventActivity.class);
 	        intent.putExtra("content", "member");
 	        spec = tabHost.newTabSpec("promos").setIndicator(tab).setContent(intent);
 	        tabHost.addTab(spec);

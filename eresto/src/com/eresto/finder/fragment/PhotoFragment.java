@@ -14,7 +14,7 @@ import android.widget.GridView;
 public class PhotoFragment extends Fragment {
 	
 	int mCurrentPage;
-	private static String[] data1 = new String[15];
+//	private static String[] data1 = new String[15];
 	private PhotoAdapter adapter;
 	public String id_resto;
 	public Resto resto;

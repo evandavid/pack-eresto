@@ -32,8 +32,8 @@
 
         <activity
             android:name="com.eresto.finder.DashboardActivity"
-            android:label="@string/title_activity_main" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -98,7 +98,13 @@
             android:label="@string/title_activity_preview"
             android:theme="@style/FullscreenTheme" >
         </activity>
+
         <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name="com.eresto.finder.EventActivity"
+            android:label="@string/title_activity_event" >
+        </activity>
     </application>
 
 </manifest>

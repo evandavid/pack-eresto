@@ -1,4 +1,4 @@
-package com.eresto.finder.fragment;
+package com.eresto.finder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,31 +13,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.eresto.finder.DashboardActivity;
-import com.eresto.finder.R;
-import com.eresto.finder.SplashActivity;
 import com.eresto.finder.adapter.EventAdapter;
-import com.eresto.finder.adapter.HomeAdapter;
 import com.eresto.finder.model.Resto;
 import com.eresto.utils.ConvertStreamToString;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class EventFragment extends Fragment {
-	@SuppressWarnings("unused")
-	private int mCurrentPage;
+public class EventActivity extends Activity {
+
 	private ListView lv;
 	private TextView tv;
 	public boolean hasNetwork;
@@ -47,54 +41,23 @@ public class EventFragment extends Fragment {
 	public String[][] data;
 	public Resto resto;
 	public EventAdapter adapter;
-	 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        /** Getting the arguments to the Bundle object */
-        Bundle data = getArguments();
-        /** Getting integer data of the key current_page from the bundle */
-        mCurrentPage = data.getInt("current_page", 0);
-        convert = new ConvertStreamToString();
-    }
- 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_event_list, container,false);
-        tv = (TextView)v.findViewById(R.id.ops);
-        lv = (ListView)v.findViewById(R.id.listView1);
-        hasNetwork = haveNetworkConnection2();
-        this.id_resto = getArguments().getString("id_resto");
-        return v;
-    }
-    
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-	    super.setUserVisibleHint(isVisibleToUser);
 	
-	    if (isVisibleToUser) {
-	    	 if(hasNetwork){  
- 	        	loading = ProgressDialog.show(getActivity(), "", "Downloading data, please wait..", true);
- 	        	loading.setCancelable(true);         	
-	         	new Thread(new Runnable() {
-	     			public void run() {
-	     				getData();
-	     			} 		
-	     		}).start();
-	         }else{
-	         	lv.setVisibility(View.GONE);
-	         	tv.setVisibility(View.VISIBLE);
-	         	tv.setText("Ops, you don't have any internet connection");
-	         }
-	    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_event_list);
+		
+		convert = new ConvertStreamToString();
+		tv = (TextView)findViewById(R.id.ops);
+        lv = (ListView)findViewById(R.id.listView1);
+        hasNetwork = haveNetworkConnection2();
+	}
 
-    }
-    
-    public void getData(){
+	public void getData(){
     	JSONArray json;
     	JSONObject object;
     	HttpClient httpclient = new DefaultHttpClient();    
-    	String url = "http://beta.eresto.co.id/api/getEvent.json?id="+id_resto;
+    	String url = "http://beta.eresto.co.id/api/getEvent.json";
     	HttpGet httppost = new HttpGet(url);
         try {                             
 	         HttpResponse response = httpclient.execute(httppost);
@@ -110,7 +73,7 @@ public class EventFragment extends Fragment {
 		        	 if (json.length() > 0){
 		        		 this.data= new String[json.length()][7];
 		        		 for (int i = 0; i < json.length(); i++) {
-		        			resto = new Resto(getActivity());
+		        			resto = new Resto(this);
 		        			resto = resto.getResto(json.getJSONObject(i).getString("resto_id_resto"));
 							this.data[i][0] = json.getJSONObject(i).getString("promo_judul");
 							this.data[i][1] = resto.resto_nama;
@@ -176,7 +139,7 @@ public class EventFragment extends Fragment {
     public void success(){
     	tv.setVisibility(View.GONE);
     	lv.setVisibility(View.VISIBLE);
-    	this.adapter = new EventAdapter(getActivity(), this.data);
+    	this.adapter = new EventAdapter(this, this.data);
     	lv.setAdapter(adapter);
     	loading.dismiss();
     }
@@ -185,7 +148,7 @@ public class EventFragment extends Fragment {
     	boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
         try {
-        	ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        	ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo[] netInfo = cm.getAllNetworkInfo();
             for (NetworkInfo ni : netInfo) {
                 if (ni.getTypeName().equalsIgnoreCase("WIFI"))
@@ -199,6 +162,43 @@ public class EventFragment extends Fragment {
 		} catch (Exception e) {
 			return false;
 		}
+    }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.event, menu);
+		return true;
+	}
+    
+    @Override
+    public void onResume(){
+    	if(hasNetwork){  
+        	loading = ProgressDialog.show(this, "", "Downloading data, please wait..", true);
+        	loading.setCancelable(true);         	
+	     	new Thread(new Runnable() {
+	 			public void run() {
+	 				getData();
+	 			} 		
+	 		}).start();
+	     }else{
+	     	lv.setVisibility(View.GONE);
+	     	tv.setVisibility(View.VISIBLE);
+	     	tv.setText("Ops, you don't have any internet connection");
+	     }
+	    	super.onResume();
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.action_settings:
+	    	onResume();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
     }
     
 }

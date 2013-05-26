@@ -39,9 +39,11 @@ public class Resto {
 	 
 	 public Resto[] getAllResto(String limit){
 		 dbhelper = new CurrentCityDb(this.context);
+//		 db.open();
 	     db = dbhelper.getWritableDatabase();
 	     Cursor cursor = dbhelper.getAllResto(db, limit);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto;
 	 }
 	 
@@ -50,6 +52,7 @@ public class Resto {
 	     db = dbhelper.getWritableDatabase();
 	     Cursor cursor = dbhelper.getAllFeatureResto(db);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto;
 	 }
 	 
@@ -58,6 +61,7 @@ public class Resto {
 	     db = dbhelper.getWritableDatabase();
 	     Cursor cursor = dbhelper.getRandomResto(db);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto;
 	 }
 	 
@@ -67,6 +71,7 @@ public class Resto {
 	     String city = dbhelper.getCity(db);
 	     Cursor cursor = dbhelper.getRandomRestoCity(db, city);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto;
 	 }
 	 
@@ -75,6 +80,7 @@ public class Resto {
 	     db = dbhelper.getWritableDatabase();
 	     Cursor cursor = dbhelper.getSearchResto(db, offset, q);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto;
 	 }
 	 
@@ -83,6 +89,7 @@ public class Resto {
 	     db = dbhelper.getWritableDatabase();
 	     Cursor cursor = dbhelper.getResto(db, id);
 	     Resto[] resto = construtResto(cursor);
+	     db.close();
 	     return resto[0];
 	 }
 	 
