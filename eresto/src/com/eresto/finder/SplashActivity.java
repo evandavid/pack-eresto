@@ -17,10 +17,13 @@ import com.eresto.finder.fragment.MapFragment;
 import com.eresto.utils.ConvertStreamToString;
 import com.eresto.utils.CurrentCityDb;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Window;
@@ -59,7 +62,7 @@ public class SplashActivity extends Activity {
 	@Override
     protected void onResume() {
         super.onResume();
-        boolean hasNetwork = MapFragment.haveNetworkConnection(this);
+        boolean hasNetwork = haveNetworkConnection2();
         if (hasNetwork){
 	        if (this.status.equals("False")) {
 	            //first run
@@ -89,6 +92,26 @@ public class SplashActivity extends Activity {
     	        }
     	    }, 2000);
         }
+    }
+	
+	public boolean haveNetworkConnection2() {
+    	boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+        try {
+        	ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+            for (NetworkInfo ni : netInfo) {
+                if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                    if (ni.isConnected())
+                        haveConnectedWifi = true;
+                if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                    if (ni.isConnected())
+                        haveConnectedMobile = true;
+            }
+            return haveConnectedWifi || haveConnectedMobile;
+		} catch (Exception e) {
+			return false;
+		}
     }
 	
 	public void getData(){
