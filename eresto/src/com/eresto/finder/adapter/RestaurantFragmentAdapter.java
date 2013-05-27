@@ -1,4 +1,5 @@
 package com.eresto.finder.adapter;
+import com.eresto.finder.fragment.CommentFragment;
 import com.eresto.finder.fragment.EventFragment;
 import com.eresto.finder.fragment.MapFragment;
 import com.eresto.finder.fragment.MenuFragment;
@@ -11,7 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
  
 public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
-	final int PAGE_COUNT = 5;
+	final int PAGE_COUNT = 6;
 	public String id;
 	 
     /** Constructor of the class */
@@ -52,13 +53,22 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 	        data.putString("id_resto", id);
 	        myFragment.setArguments(data);
 	        return myFragment;
-		default:
+	        
+		case 4:
 			EventFragment Event = new EventFragment();
 	        Bundle data_Event = new Bundle();
 	        data_Event.putInt("current_page", arg0+1);
 	        data_Event.putString("id_resto", id);
 	        Event.setArguments(data_Event);
 	        return Event;
+	        
+		default:
+			CommentFragment Comment = new CommentFragment();
+	        Bundle data_Comment = new Bundle();
+	        data_Comment.putInt("current_page", arg0+1);
+	        data_Comment.putString("id_resto", id);
+	        Comment.setArguments(data_Comment);
+	        return Comment;
 			
 		}
         
@@ -88,6 +98,9 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 			break;
 		case 4:
 			menu = "Events &Promos";
+			break;
+		case 5:
+			menu = "Reviews";
 			break;
 		}
     	return menu;

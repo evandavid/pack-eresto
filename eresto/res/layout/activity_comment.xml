@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".RestaurantListSearchActivity" >
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/header_bg"
+        android:gravity="center_vertical"
+        android:padding="5dp" 
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="-5dp"
+            android:contentDescription="@string/image_desc"
+            android:onClick="BackClicked"
+            android:src="@drawable/navigation_previous_item" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/image_desc"
+            android:onClick="searchPressed"
+            android:src="@drawable/ic_action_search" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="-20dp"
+            android:onClick="BackClicked"
+            android:layout_toRightOf="@+id/imageView2"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="-8dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="@string/resto"
+            android:textColor="#fff"
+            android:textSize="20sp" 
+            android:onClick="BackClicked"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+       android:id="@+id/something2"
+       android:layout_width="fill_parent"
+ 	   android:layout_height="1dp"
+ 	   android:layout_below="@id/header"
+ 	   android:background="#000"
+ 	   android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/something2"
+        android:background="#00000000" />
+
+    <TextView
+        android:id="@+id/ops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="#FFF"
+        android:text="Ops, there are no event and promo now"
+        android:visibility="gone" />
+
+</RelativeLayout>
