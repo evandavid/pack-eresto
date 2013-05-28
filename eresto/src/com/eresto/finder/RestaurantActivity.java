@@ -1,6 +1,7 @@
 package com.eresto.finder;
 
 import com.eresto.finder.adapter.RestaurantFragmentAdapter;
+import com.eresto.finder.fragment.CommentFragment;
 import com.eresto.finder.model.Resto;
 import com.eresto.utils.ImageLoader;
 import com.eresto.utils.getRoundedCornerBitmap;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -73,6 +75,21 @@ public class RestaurantActivity extends FragmentActivity {
 	        pager.setAdapter(pagerAdapter);
         }
     }
+    
+    public void getBack(){
+    	
+    }
+    
+    public void onBackPressed() {
+        Fragment webview = getSupportFragmentManager().findFragmentById(5);
+        if (webview instanceof CommentFragment) {
+               boolean goback = ((CommentFragment) webview).canGoBack();
+               if (!goback)
+                 super.onBackPressed();
+               else
+            	 ((CommentFragment) webview).goBack();
+        }
+  }
     
     public void onNewIntent(Intent intent) { 
         setIntent(intent); 

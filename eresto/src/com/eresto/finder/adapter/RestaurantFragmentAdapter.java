@@ -31,6 +31,7 @@ public class RestaurantFragmentAdapter extends FragmentPagerAdapter {
 	        data_overview.putInt("current_page", arg0+1);
 	        data_overview.putString("id_resto", id);
 	        overview.setArguments(data_overview);
+//	        overview.se
 	        return overview;
 		case 1:
 			MenuFragment menu = new MenuFragment();

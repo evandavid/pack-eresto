@@ -29,6 +29,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,14 @@ public class CommentFragment extends Fragment {
         mCurrentPage = data.getInt("current_page", 0);
         convert = new ConvertStreamToString();
     }
+    
+    public void goBack(){
+    	webDisqus.goBack();
+    }
+    
+    public boolean canGoBack(){
+    	return webDisqus.canGoBack();
+    }
  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,16 +96,22 @@ public class CommentFragment extends Fragment {
         this.id_resto = getArguments().getString("id_resto");
         return v;
     }
-
-    @Override
-    public void onBackPressed()
-    {
-        if(webDisqus.canGoBack())
-            webDisqus.goBack();
-        else
-            super.onBackPressed();
-    }
     
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if(event.getAction() == KeyEvent.ACTION_DOWN){
+//            switch(keyCode)
+//            {
+//            case KeyEvent.KEYCODE_BACK:
+//            	if(webDisqus.canGoBack())
+//                    webDisqus.goBack();
+//                return true;
+//            }
+//
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
 	    super.setUserVisibleHint(isVisibleToUser);
