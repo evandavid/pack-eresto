@@ -87,6 +87,15 @@ public class CommentFragment extends Fragment {
         this.id_resto = getArguments().getString("id_resto");
         return v;
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(webDisqus.canGoBack())
+            webDisqus.goBack();
+        else
+            super.onBackPressed();
+    }
     
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
